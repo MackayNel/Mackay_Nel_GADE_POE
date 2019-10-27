@@ -152,9 +152,12 @@ MonoBehaviour:
   MapSize: 50
   OpenSpace: {fileID: 4364788107059720625, guid: 39435bcd7b3c57d41a3f27ccce21e1e8,
     type: 3}
-  Buildings: {fileID: 6814761860946555286, guid: 51abcfd7f43d8dc4da358552a9c8610d,
-    type: 3}
   Border: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57, type: 3}
+  Buildings:
+  - {fileID: 6814761860946555286, guid: 51abcfd7f43d8dc4da358552a9c8610d, type: 3}
+  - {fileID: 3351942794994724760, guid: 6b4fae213d2ad9449b4a824ef2f6e562, type: 3}
+  - {fileID: 2614754704174580568, guid: 78fdd74786e832a44920c37c3337f416, type: 3}
+  - {fileID: 2622222751822747932, guid: 54fe54ffc2aae0945a27aa8123a2dd92, type: 3}
   Units:
   - {fileID: 376196601292240181, guid: 3ff968a72a1a9ee43b23bfd9127575ba, type: 3}
   - {fileID: 228585626113343757, guid: b04b8ade079f25f419be9330021a78f5, type: 3}

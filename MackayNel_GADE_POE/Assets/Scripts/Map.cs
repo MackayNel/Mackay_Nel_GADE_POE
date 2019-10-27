@@ -21,15 +21,18 @@ public class Map : MonoBehaviour
         Team2Knight,
         Team2Wizard,
         RougeWizard,
-        Building,
+        Team1Factory,
+        Team1Resource,
+        Team2Factory,
+        Team2Resource,
         Wall,
         OpenSpace
     }
 
     public int MapSize;
     public GameObject OpenSpace;
-    public GameObject Buildings;
     public GameObject Border;
+    public GameObject[] Buildings;
     public GameObject[] Units;
 
     BlockType[,] map;
@@ -101,8 +104,17 @@ public class Map : MonoBehaviour
                     case BlockType.Wall:
                         Instantiate(Border, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case BlockType.Building:
-                        Instantiate(Buildings, new Vector3(x, 1.5f, z), Quaternion.identity);
+                    case BlockType.Team1Factory:
+                        Instantiate(Buildings[0], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team1Resource:
+                        Instantiate(Buildings[1], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team2Factory:
+                        Instantiate(Buildings[2], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team2Resource:
+                        Instantiate(Buildings[3], new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
                     case BlockType.Team1Archer:
                         Instantiate(Units[0], new Vector3(x, 1f, z), Quaternion.identity);
@@ -139,7 +151,7 @@ public class Map : MonoBehaviour
             int z = Random.Range(1, MapSize - 1);
             if (map[x, z] == BlockType.OpenSpace)
             {
-                map[x, z] = BlockType.Building;
+                map[x, z] = (BlockType)Random.Range(0,4);
             }
             else
             {
