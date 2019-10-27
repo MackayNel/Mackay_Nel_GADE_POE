@@ -152,7 +152,7 @@ MonoBehaviour:
   dungeonSize: 50
   OpenSpace: {fileID: 4364788107059720625, guid: 39435bcd7b3c57d41a3f27ccce21e1e8,
     type: 3}
-  Hero: {fileID: 7249750846607813310, guid: f2490e6c0e5c9164eb0c7b6c451077f0, type: 3}
+  Hero: {fileID: 780608748251460444, guid: 1bc33f6d788a9bb4a94bbb9385b2fc50, type: 3}
   Obstacle: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57,
     type: 3}
   Gold: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57, type: 3}
@@ -160,10 +160,10 @@ MonoBehaviour:
   - {fileID: 376196601292240181, guid: 3ff968a72a1a9ee43b23bfd9127575ba, type: 3}
   - {fileID: 228585626113343757, guid: b04b8ade079f25f419be9330021a78f5, type: 3}
   - {fileID: 2105600905686692989, guid: 0068573e7fbe0ca46bf15c45623c2249, type: 3}
-  - {fileID: 8905092684004274215, guid: 9b3f56e7501ef544695c42e59a988c73, type: 3}
+  - {fileID: 758925156269740105, guid: ffeb03c305c243b4bbd3a75121a0a515, type: 3}
   - {fileID: 3168954043992452845, guid: bf1045baa15eb4147b0a1d91b890f417, type: 3}
   - {fileID: 5918673970029548575, guid: 7426281a7c6453a449efee5721ae3dd9, type: 3}
-  - {fileID: 7249750846607813310, guid: f2490e6c0e5c9164eb0c7b6c451077f0, type: 3}
+  - {fileID: 780608748251460444, guid: 1bc33f6d788a9bb4a94bbb9385b2fc50, type: 3}
 --- !u!4 &95480317
 Transform:
   m_ObjectHideFlags: 0
