@@ -14,10 +14,13 @@ public class Map : MonoBehaviour
 
     public enum TileType
     {
-        Rat,
-        Goblin,
-        Orc,
-        Dragon,
+        Team1Archer,
+        Team1Knight,
+        Team1Wizard,
+        Team2Archer,
+        Team2Knight,
+        Team2Wizard,
+        RougeWizard,
         Gold,
         Hero,
         Obstacle,
@@ -41,7 +44,7 @@ public class Map : MonoBehaviour
     {
         InitializeDungeon();
         PlaceObstacles(20);
-        PlaceEnemies(8);
+        PlaceEnemies(30);
         PlaceCoins(10);
         PlaceHero();
 
@@ -123,25 +126,34 @@ public class Map : MonoBehaviour
                         Instantiate(OpenSpace, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.Obstacle:
-                        Instantiate(Obstacle, new Vector3(x, 2f, z), Quaternion.identity);
+                        Instantiate(Obstacle, new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
                     case TileType.Gold:
-                        Instantiate(Gold, new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Gold, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.Hero:
-                        Instantiate(Hero, new Vector3(x, 2f, z), Quaternion.identity);
+                        Instantiate(Hero, new Vector3(x, 1.8f, z), Quaternion.identity);
                         break;
-                    case TileType.Rat:
+                    case TileType.Team1Archer:
                         Instantiate(enemies[0], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Goblin:
-                        Instantiate(enemies[1], new Vector3(x, 2f, z), Quaternion.identity);
+                    case TileType.Team1Knight:
+                        Instantiate(enemies[1], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Orc:
-                        Instantiate(enemies[2], new Vector3(x, 1f, z), Quaternion.identity);
+                    case TileType.Team1Wizard:
+                        Instantiate(enemies[2], new Vector3(x, 1.8f, z), Quaternion.identity);
                         break;
-                    case TileType.Dragon:
+                    case TileType.Team2Archer:
                         Instantiate(enemies[3], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case TileType.Team2Knight:
+                        Instantiate(enemies[4], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case TileType.Team2Wizard:
+                        Instantiate(enemies[5], new Vector3(x, 1.8f, z), Quaternion.identity);
+                        break;
+                    case TileType.RougeWizard:
+                        Instantiate(enemies[6], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
 
                 }
@@ -210,7 +222,7 @@ public class Map : MonoBehaviour
             int z = Random.Range(1, dungeonSize - 1);
             if (dungeon[x, z] == TileType.OpenSpace)
             {
-                dungeon[x, z] = (TileType)Random.Range(0, 4);
+                dungeon[x, z] = (TileType)Random.Range(0, 6);
             }
             else
             {
@@ -246,7 +258,7 @@ public class Map : MonoBehaviour
             dungeon[posX, posZ] = TileType.Hero;
             Display();
         }
-        else if (dungeon[newX, newZ] == TileType.Rat)
+        else if (dungeon[newX, newZ] == TileType.Team1Archer)
         {
 
         }
