@@ -12,7 +12,7 @@ public class Map : MonoBehaviour
         West
     }
 
-    public enum TileType
+    public enum BlockType
     {
         Team1Archer,
         Team1Knight,
@@ -21,93 +21,66 @@ public class Map : MonoBehaviour
         Team2Knight,
         Team2Wizard,
         RougeWizard,
-        Gold,
-        Hero,
-        Obstacle,
+        Building,
+        Wall,
         OpenSpace
     }
 
-    public int dungeonSize;
+    public int MapSize;
     public GameObject OpenSpace;
-    public GameObject Hero;
-    public GameObject Obstacle;
-    public GameObject Gold;
-    public GameObject[] enemies;
+    public GameObject Buildings;
+    public GameObject Border;
+    public GameObject[] Units;
 
-    TileType[,] dungeon;
+    BlockType[,] map;
     int posX;
     int posZ;
-    int gold = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         InitializeDungeon();
-        PlaceObstacles(20);
-        PlaceEnemies(50);
-        PlaceCoins(10);
-        PlaceHero();
-
-        // =========================
-
+        PlaceBuildings(4);
+        PlaceUnits(50);
         Display();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Get keyboard movements (W, A, S, D)
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            MoveCharacter(Direction.North);
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            MoveCharacter(Direction.West);
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            MoveCharacter(Direction.South);
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
-            MoveCharacter(Direction.East);
-        }
+       
     }
 
     public void InitializeDungeon()
     {
-        dungeon = new TileType[dungeonSize, dungeonSize];
+        map = new BlockType[MapSize, MapSize];
 
-        for (int i = 0; i < dungeonSize; i++)
+        for (int i = 0; i < MapSize; i++)
         {
-            for (int j = 0; j < dungeonSize; j++)
+            for (int j = 0; j < MapSize; j++)
             {
-                dungeon[i, j] = TileType.OpenSpace;
+                map[i, j] = BlockType.OpenSpace;
             }
         }
-        //North wall
-        for (int x = 0; x < dungeonSize; x++)
+        //Creates Boundries for the map
+        for (int x = 0; x < MapSize; x++)
         {
-            dungeon[x, dungeonSize - 1] = TileType.Obstacle;
+            map[x, MapSize - 1] = BlockType.Wall;
         }
-        //South wall
-        for (int x = 0; x < dungeonSize; x++)
+        for (int x = 0; x < MapSize; x++)
         {
-            dungeon[x, 0] = TileType.Obstacle;
+            map[x, 0] = BlockType.Wall;
         }
-        //East wall
-        for (int z = 0; z < dungeonSize; z++)
+        for (int z = 0; z < MapSize; z++)
         {
-            dungeon[dungeonSize - 1, z] = TileType.Obstacle;
+            map[MapSize - 1, z] = BlockType.Wall ;
         }
-        //West wall
-        for (int z = 0; z < dungeonSize; z++)
+        for (int z = 0; z < MapSize; z++)
         {
-            dungeon[0, z] = TileType.Obstacle;
+            map[0, z] = BlockType.Wall;
         }
     }
-
+    //Unit and Map Display
     private void Display()
     {
         GameObject[] tiles = GameObject.FindGameObjectsWithTag("tile");
@@ -116,60 +89,57 @@ public class Map : MonoBehaviour
             Destroy(g);
         }
 
-        for (int x = 0; x < dungeonSize; x++)
+        for (int x = 0; x < MapSize; x++)
         {
-            for (int z = 0; z < dungeonSize; z++)
+            for (int z = 0; z < MapSize; z++)
             {
-                switch (dungeon[x, z])
+                switch (map[x, z])
                 {
-                    case TileType.OpenSpace:
+                    case BlockType.OpenSpace:
                         Instantiate(OpenSpace, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Obstacle:
-                        Instantiate(Obstacle, new Vector3(x, 1.5f, z), Quaternion.identity);
+                    case BlockType.Wall:
+                        Instantiate(Border, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Gold:
-                        Instantiate(Gold, new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.Building:
+                        Instantiate(Buildings, new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
-                    case TileType.Hero:
-                        Instantiate(Hero, new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.Team1Archer:
+                        Instantiate(Units[0], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Team1Archer:
-                        Instantiate(enemies[0], new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.Team1Knight:
+                        Instantiate(Units[1], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Team1Knight:
-                        Instantiate(enemies[1], new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.Team1Wizard:
+                        Instantiate(Units[2], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Team1Wizard:
-                        Instantiate(enemies[2], new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.Team2Archer:
+                        Instantiate(Units[3], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Team2Archer:
-                        Instantiate(enemies[3], new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.Team2Knight:
+                        Instantiate(Units[4], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Team2Knight:
-                        Instantiate(enemies[4], new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.Team2Wizard:
+                        Instantiate(Units[5], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
-                    case TileType.Team2Wizard:
-                        Instantiate(enemies[5], new Vector3(x, 1f, z), Quaternion.identity);
-                        break;
-                    case TileType.RougeWizard:
-                        Instantiate(enemies[6], new Vector3(x, 1f, z), Quaternion.identity);
+                    case BlockType.RougeWizard:
+                        Instantiate(Units[6], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
 
                 }
             }
         }
     }
-
-    private void PlaceObstacles(int numObstacles)
+    //Spawns Buildings
+    private void PlaceBuildings(int numBuildings)
     {
-        for (int i = 0; i < numObstacles; i++)
+        for (int i = 0; i < numBuildings; i++)
         {
-            int x = Random.Range(1, dungeonSize - 1);
-            int z = Random.Range(1, dungeonSize - 1);
-            if (dungeon[x, z] == TileType.OpenSpace)
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
             {
-                dungeon[x, z] = TileType.Obstacle;
+                map[x, z] = BlockType.Building;
             }
             else
             {
@@ -177,90 +147,21 @@ public class Map : MonoBehaviour
             }
         }
     }
-
-    private void PlaceCoins(int numCoins)
+    //Spawns Units
+    private void PlaceUnits(int numUnits)
     {
-        for (int i = 0; i < numCoins; i++)
+        for (int i = 0; i < numUnits; i++)
         {
-            int x = Random.Range(1, dungeonSize - 1);
-            int z = Random.Range(1, dungeonSize - 1);
-            if (dungeon[x, z] == TileType.OpenSpace)
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
             {
-                dungeon[x, z] = TileType.Gold;
+                map[x, z] = (BlockType)Random.Range(0, 7);
             }
             else
             {
                 i--;
             }
-        }
-    }
-
-    private void PlaceHero()
-    {
-        for (int i = 0; i < 1; i++)
-        {
-            int x = Random.Range(1, dungeonSize - 1);
-            int z = Random.Range(1, dungeonSize - 1);
-            if (dungeon[x, z] == TileType.OpenSpace)
-            {
-                dungeon[x, z] = TileType.Hero;
-                posX = x;
-                posZ = z;
-            }
-            else
-            {
-                i--;
-            }
-        }
-    }
-
-    private void PlaceEnemies(int numEnemies)
-    {
-        for (int i = 0; i < numEnemies; i++)
-        {
-            int x = Random.Range(1, dungeonSize - 1);
-            int z = Random.Range(1, dungeonSize - 1);
-            if (dungeon[x, z] == TileType.OpenSpace)
-            {
-                dungeon[x, z] = (TileType)Random.Range(0, 7);
-            }
-            else
-            {
-                i--;
-            }
-        }
-    }
-    private void MoveCharacter(Direction dir)
-    {
-        int newX = posX;
-        int newZ = posZ;
-        switch (dir)
-        {
-            case Direction.North: newZ = posZ + 1; break;
-            case Direction.South: newZ = posZ - 1; break;
-            case Direction.East: newX = posX + 1; break;
-            case Direction.West: newX = posX - 1; break;
-        }
-        if (dungeon[newZ, newX] == TileType.OpenSpace)
-        {
-            dungeon[posX, posZ] = TileType.OpenSpace;
-            posX = newX;
-            posZ = newZ;
-            dungeon[posX, posZ] = TileType.Hero;
-            Display();
-        }
-        else if (dungeon[newX, newZ] == TileType.Gold)
-        {
-            gold++;
-            dungeon[posX, posZ] = TileType.OpenSpace;
-            posX = newX;
-            posZ = newZ;
-            dungeon[posX, posZ] = TileType.Hero;
-            Display();
-        }
-        else if (dungeon[newX, newZ] == TileType.Team1Archer)
-        {
-
         }
     }
 }

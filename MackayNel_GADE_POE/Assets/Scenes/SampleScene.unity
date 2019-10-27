@@ -149,14 +149,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31debb13f6efe7e4a8fedb7a20f6af18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonSize: 50
+  MapSize: 50
   OpenSpace: {fileID: 4364788107059720625, guid: 39435bcd7b3c57d41a3f27ccce21e1e8,
     type: 3}
-  Hero: {fileID: 780608748251460444, guid: 1bc33f6d788a9bb4a94bbb9385b2fc50, type: 3}
-  Obstacle: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57,
+  Buildings: {fileID: 6814761860946555286, guid: 51abcfd7f43d8dc4da358552a9c8610d,
     type: 3}
-  Gold: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57, type: 3}
-  enemies:
+  Border: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57, type: 3}
+  Units:
   - {fileID: 376196601292240181, guid: 3ff968a72a1a9ee43b23bfd9127575ba, type: 3}
   - {fileID: 228585626113343757, guid: b04b8ade079f25f419be9330021a78f5, type: 3}
   - {fileID: 2105600905686692989, guid: 0068573e7fbe0ca46bf15c45623c2249, type: 3}
