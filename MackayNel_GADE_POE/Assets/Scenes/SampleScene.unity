@@ -149,16 +149,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31debb13f6efe7e4a8fedb7a20f6af18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonSize: 20
+  dungeonSize: 50
   OpenSpace: {fileID: 4364788107059720625, guid: 39435bcd7b3c57d41a3f27ccce21e1e8,
     type: 3}
   Hero: {fileID: 7249750846607813310, guid: f2490e6c0e5c9164eb0c7b6c451077f0, type: 3}
   Obstacle: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57,
     type: 3}
-  Gold: {fileID: 0}
+  Gold: {fileID: 7668087309647655693, guid: 1dd07f8c685e2e34ba1c2cd5ce2e8a57, type: 3}
   enemies:
+  - {fileID: 376196601292240181, guid: 3ff968a72a1a9ee43b23bfd9127575ba, type: 3}
   - {fileID: 228585626113343757, guid: b04b8ade079f25f419be9330021a78f5, type: 3}
+  - {fileID: 2105600905686692989, guid: 0068573e7fbe0ca46bf15c45623c2249, type: 3}
+  - {fileID: 8905092684004274215, guid: 9b3f56e7501ef544695c42e59a988c73, type: 3}
   - {fileID: 3168954043992452845, guid: bf1045baa15eb4147b0a1d91b890f417, type: 3}
+  - {fileID: 5918673970029548575, guid: 7426281a7c6453a449efee5721ae3dd9, type: 3}
+  - {fileID: 7249750846607813310, guid: f2490e6c0e5c9164eb0c7b6c451077f0, type: 3}
 --- !u!4 &95480317
 Transform:
   m_ObjectHideFlags: 0
@@ -168,7 +173,7 @@ Transform:
   m_GameObject: {fileID: 95480315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
