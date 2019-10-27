@@ -44,7 +44,7 @@ public class Map : MonoBehaviour
     {
         InitializeDungeon();
         PlaceObstacles(20);
-        PlaceEnemies(30);
+        PlaceEnemies(50);
         PlaceCoins(10);
         PlaceHero();
 
@@ -132,7 +132,7 @@ public class Map : MonoBehaviour
                         Instantiate(Gold, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.Hero:
-                        Instantiate(Hero, new Vector3(x, 1.8f, z), Quaternion.identity);
+                        Instantiate(Hero, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.Team1Archer:
                         Instantiate(enemies[0], new Vector3(x, 1f, z), Quaternion.identity);
@@ -141,7 +141,7 @@ public class Map : MonoBehaviour
                         Instantiate(enemies[1], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.Team1Wizard:
-                        Instantiate(enemies[2], new Vector3(x, 1.8f, z), Quaternion.identity);
+                        Instantiate(enemies[2], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.Team2Archer:
                         Instantiate(enemies[3], new Vector3(x, 1f, z), Quaternion.identity);
@@ -150,7 +150,7 @@ public class Map : MonoBehaviour
                         Instantiate(enemies[4], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.Team2Wizard:
-                        Instantiate(enemies[5], new Vector3(x, 1.8f, z), Quaternion.identity);
+                        Instantiate(enemies[5], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case TileType.RougeWizard:
                         Instantiate(enemies[6], new Vector3(x, 1f, z), Quaternion.identity);
@@ -222,7 +222,7 @@ public class Map : MonoBehaviour
             int z = Random.Range(1, dungeonSize - 1);
             if (dungeon[x, z] == TileType.OpenSpace)
             {
-                dungeon[x, z] = (TileType)Random.Range(0, 6);
+                dungeon[x, z] = (TileType)Random.Range(0, 7);
             }
             else
             {
