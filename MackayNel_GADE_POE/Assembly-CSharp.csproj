@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CamControl.cs" />
+    <Compile Include="Assets\Scripts\Health.cs" />
+    <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Map.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/Mackay/Desktop/Mackay_Nel_GADE_POE/MackayNel_GADE_POE/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
