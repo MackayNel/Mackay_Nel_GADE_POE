@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     private Image foregroundImage;
+
     [SerializeField]
     private float updateSpeedSeconds = 0.5f;
 
@@ -18,6 +19,7 @@ public class HealthBar : MonoBehaviour
     {
         StartCoroutine(ChangeToPct(pct));
     }
+
     private IEnumerator ChangeToPct(float pct)
     {
         float preChangePct = foregroundImage.fillAmount;
@@ -31,7 +33,7 @@ public class HealthBar : MonoBehaviour
         }
         foregroundImage.fillAmount = pct;
     }
-   
+
     private void LateUpdate()
     {
         transform.LookAt(Camera.main.transform);
