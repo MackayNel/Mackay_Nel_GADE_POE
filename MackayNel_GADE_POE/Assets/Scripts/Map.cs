@@ -32,7 +32,8 @@ public class Map : MonoBehaviour
     public int MapSize;
     public GameObject OpenSpace;
     public GameObject Border;
-    public GameObject[] Buildings;
+    public GameObject[] Team1Buildings;
+    public GameObject[] Team2Buildings;
     public GameObject [] Team1Units;
     public GameObject []Team2Units;
     public GameObject Team3Units;
@@ -45,7 +46,8 @@ public class Map : MonoBehaviour
     void Start()
     {
         InitializeDungeon();
-        PlaceBuildings(4);
+        PlaceTeam1Buildings(1);
+        PlaceTeam2Buildings(1);
         PlaceTeam1Units(15);
         PlaceTeam2Units(15);
         PlaceTeam3Units(15);
@@ -130,16 +132,16 @@ public class Map : MonoBehaviour
                         Instantiate(Team3Units, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case BlockType.Team1Factory:
-                        Instantiate(Buildings[0], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team1Buildings[0], new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
                     case BlockType.Team1Resource:
-                        Instantiate(Buildings[1], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team1Buildings[1], new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
                     case BlockType.Team2Factory:
-                        Instantiate(Buildings[2], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team2Buildings[0], new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
                     case BlockType.Team2Resource:
-                        Instantiate(Buildings[3], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team2Buildings[1], new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
 
                 }
@@ -147,7 +149,7 @@ public class Map : MonoBehaviour
         }
     }
     //Spawns Buildings
-    private void PlaceBuildings(int numBuildings)
+    private void PlaceTeam1Buildings(int numBuildings)
     {
         for (int i = 0; i < numBuildings; i++)
         {
@@ -155,7 +157,49 @@ public class Map : MonoBehaviour
             int z = Random.Range(1, MapSize - 1);
             if (map[x, z] == BlockType.OpenSpace)
             {
-                map[x, z] = (BlockType)Random.Range(0,4);
+                map[x, z] = BlockType.Team1Factory;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        for (int i = 0; i < numBuildings; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team1Resource;
+            }
+            else
+            {
+                i--;
+            }
+        }
+    }
+    private void PlaceTeam2Buildings(int numBuildings)
+    {
+        for (int i = 0; i < numBuildings; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team2Factory;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        for (int i = 0; i < numBuildings; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team2Resource;
             }
             else
             {
