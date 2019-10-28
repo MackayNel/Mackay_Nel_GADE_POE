@@ -25,7 +25,7 @@ public class patrol : MonoBehaviour
         if(Physics.Raycast(transform.position, transform.forward, maxDistFromWall, whatisWall))
         {
             moveDir = ChooseDirection();
-           // transform.rotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.LookRotation(moveDir);
         }
     }
 
