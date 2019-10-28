@@ -33,7 +33,9 @@ public class Map : MonoBehaviour
     public GameObject OpenSpace;
     public GameObject Border;
     public GameObject[] Buildings;
-    public GameObject[] Units;
+    public GameObject [] Team1Units;
+    public GameObject []Team2Units;
+    public GameObject Team3Units;
 
     BlockType[,] map;
     int posX;
@@ -44,7 +46,9 @@ public class Map : MonoBehaviour
     {
         InitializeDungeon();
         PlaceBuildings(4);
-        PlaceUnits(50);
+        PlaceTeam1Units(15);
+        PlaceTeam2Units(15);
+        PlaceTeam3Units(15);
         Display();
     }
 
@@ -104,6 +108,27 @@ public class Map : MonoBehaviour
                     case BlockType.Wall:
                         Instantiate(Border, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
+                    case BlockType.Team1Archer:
+                        Instantiate(Team1Units[0], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team1Knight:
+                        Instantiate(Team1Units[1], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team1Wizard:
+                        Instantiate(Team1Units[2], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team2Archer:
+                        Instantiate(Team2Units[0], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team2Knight:
+                        Instantiate(Team2Units[1], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case BlockType.Team2Wizard:
+                        Instantiate(Team2Units[2], new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
+                    case BlockType.RougeWizard:
+                        Instantiate(Team3Units, new Vector3(x, 1f, z), Quaternion.identity);
+                        break;
                     case BlockType.Team1Factory:
                         Instantiate(Buildings[0], new Vector3(x, 1.5f, z), Quaternion.identity);
                         break;
@@ -115,27 +140,6 @@ public class Map : MonoBehaviour
                         break;
                     case BlockType.Team2Resource:
                         Instantiate(Buildings[3], new Vector3(x, 1.5f, z), Quaternion.identity);
-                        break;
-                    case BlockType.Team1Archer:
-                        Instantiate(Units[0], new Vector3(x, 1f, z), Quaternion.identity);
-                        break;
-                    case BlockType.Team1Knight:
-                        Instantiate(Units[1], new Vector3(x, 1f, z), Quaternion.identity);
-                        break;
-                    case BlockType.Team1Wizard:
-                        Instantiate(Units[2], new Vector3(x, 1f, z), Quaternion.identity);
-                        break;
-                    case BlockType.Team2Archer:
-                        Instantiate(Units[3], new Vector3(x, 1f, z), Quaternion.identity);
-                        break;
-                    case BlockType.Team2Knight:
-                        Instantiate(Units[4], new Vector3(x, 1f, z), Quaternion.identity);
-                        break;
-                    case BlockType.Team2Wizard:
-                        Instantiate(Units[5], new Vector3(x, 1f, z), Quaternion.identity);
-                        break;
-                    case BlockType.RougeWizard:
-                        Instantiate(Units[6], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
 
                 }
@@ -160,15 +164,100 @@ public class Map : MonoBehaviour
         }
     }
     //Spawns Units
-    private void PlaceUnits(int numUnits)
+    private void PlaceTeam1Units(int numTeam1Units)
     {
-        for (int i = 0; i < numUnits; i++)
+        for (int i = 0; i < numTeam1Units; i++)
         {
             int x = Random.Range(1, MapSize - 1);
             int z = Random.Range(1, MapSize - 1);
             if (map[x, z] == BlockType.OpenSpace)
             {
-                map[x, z] = (BlockType)Random.Range(0, 7);
+                map[x, z] = BlockType.Team1Archer ;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        for (int i = 0; i < numTeam1Units; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team1Wizard;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        for (int i = 0; i < numTeam1Units; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team1Knight;
+            }
+            else
+            {
+                i--;
+            }
+        }
+    }
+    private void PlaceTeam2Units(int numTeam2Units)
+    {
+        
+        for (int i = 0; i < numTeam2Units; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team2Archer;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        for (int i = 0; i < numTeam2Units; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team2Knight;
+            }
+            else
+            {
+                i--;
+            }
+        }
+        for (int i = 0; i < numTeam2Units; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.Team2Wizard;
+            }
+            else
+            {
+                i--;
+            }
+        }
+    }
+    private void PlaceTeam3Units(int numTeam3Units)
+    {
+        for (int i = 0; i < numTeam3Units; i++)
+        {
+            int x = Random.Range(1, MapSize - 1);
+            int z = Random.Range(1, MapSize - 1);
+            if (map[x, z] == BlockType.OpenSpace)
+            {
+                map[x, z] = BlockType.RougeWizard;
             }
             else
             {
