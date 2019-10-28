@@ -4,14 +4,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public enum Direction
-    {
-        North,
-        East,
-        South,
-        West
-    }
-
+    //Block Tipes
     public enum BlockType
     {
         Team1Archer,
@@ -28,7 +21,7 @@ public class Map : MonoBehaviour
         Wall,
         OpenSpace
     }
-
+    //Declerations
     public int MapSize;
     public GameObject OpenSpace;
     public GameObject Border;
@@ -132,16 +125,16 @@ public class Map : MonoBehaviour
                         Instantiate(Team3Units, new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case BlockType.Team1Factory:
-                        Instantiate(Team1Buildings[0], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team1Buildings[0], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case BlockType.Team1Resource:
-                        Instantiate(Team1Buildings[1], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team1Buildings[1], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case BlockType.Team2Factory:
-                        Instantiate(Team2Buildings[0], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team2Buildings[0], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
                     case BlockType.Team2Resource:
-                        Instantiate(Team2Buildings[1], new Vector3(x, 1.5f, z), Quaternion.identity);
+                        Instantiate(Team2Buildings[1], new Vector3(x, 1f, z), Quaternion.identity);
                         break;
 
                 }
